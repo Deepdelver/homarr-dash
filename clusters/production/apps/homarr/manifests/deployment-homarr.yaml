@@ -31,12 +31,13 @@ spec:
         env:
         - name: NODE_ENV
           value: production
-        - name: DOCKER_HOSTNAMES
-          value: "localhost,host.docker.internal"
         # v1 image: nginx is the front door on 7575 and reverse-proxies to this
         # PORT. Do NOT set 7575 here or Next.js collides with nginx (EADDRINUSE).
         - name: PORT
           value: "3000"
+        # NOTE: do NOT set DOCKER_HOSTNAMES here. That is a v0-era variable that
+        # does not exist in the v1 zod env schema; the strict validator throws
+        # "Invalid environment variables" and /api/health returns 500.
         envFrom:
         - secretRef:
             name: homarr
