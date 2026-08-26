@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: homarr
-        image: ghcr.io/homarr-labs/homarr:latest
+        image: ghcr.io/homarr-labs/homarr:0.156.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 7575
@@ -29,38 +29,43 @@ spec:
           value: production
         - name: DOCKER_HOSTNAMES
           value: "localhost,host.docker.internal"
+        - name: PORT
+          value: "7575"
         envFrom:
         - secretRef:
             name: homarr
             optional: true
         volumeMounts:
-        - name: appdata
-          mountPath: /appdata
+        - name: database
+          mountPath: /app/data
+        - name: logs
+          mountPath: /app/data/logs
         livenessProbe:
           httpGet:
             path: /api/health
             port: 7575
-          initialDelaySeconds: 60
+          initialDelaySeconds: 30
           periodSeconds: 30
           timeoutSeconds: 5
-          failureThreshold: 5
+          failureThreshold: 3
         readinessProbe:
           httpGet:
             path: /api/health
             port: 7575
-          initialDelaySeconds: 30
+          initialDelaySeconds: 15
           periodSeconds: 10
           timeoutSeconds: 5
-          failureThreshold: 5
+          failureThreshold: 3
         resources:
           requests:
             cpu: 50m
-            memory: 256Mi
+            memory: 128Mi
           limits:
-            cpu: 500m
+            cpu: 300m
             memory: 512Mi
       volumes:
-      - name: appdata
-        hostPath:
-          path: /var/lib/homarr/appdata
-          type: DirectoryOrCreate
+      - name: database
+        persistentVolumeClaim:
+          claimName: homarr-database
+      - name: logs
+        emptyDir: {}
