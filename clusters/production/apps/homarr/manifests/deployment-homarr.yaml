@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: homarr
-        image: ghcr.io/homarr-labs/homarr:0.156.0
+        image: ghcr.io/homarr-labs/homarr:latest
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 7575
