@@ -6,5 +6,4 @@ resources:
 - deployment-homarr.yaml
 - ingressroute-homarr.yaml
 - certificate.yaml
-- persistentvolumeclaim-homarr-database.yaml
 - secret-homarr.yaml

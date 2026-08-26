@@ -58,14 +58,15 @@ spec:
           failureThreshold: 3
         resources:
           requests:
-            cpu: 0
-            memory: 128Mi
+            cpu: 50m
+            memory: 256Mi
           limits:
-            cpu: 300m
+            cpu: 500m
             memory: 512Mi
       volumes:
       - name: database
-        persistentVolumeClaim:
-          claimName: homarr-database
+        hostPath:
+          path: /var/lib/homarr/database
+          type: DirectoryOrCreate
       - name: logs
         emptyDir: {}
