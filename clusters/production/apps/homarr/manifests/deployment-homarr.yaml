@@ -19,7 +19,14 @@ spec:
     spec:
       containers:
       - name: homarr
-        image: ghcr.io/homarr-labs/homarr:latest
+        # Pinned to the real latest stable v1.x release.
+        # - 0.156.0 (spec'd originally) does NOT exist on ghcr.io (registry 404).
+        # - v1.76.0 also does NOT exist; highest real tag is v1.32.0 (verified via ghcr.io, 2026-08-27).
+        # - v1.32.0 declares DB_URL=/appdata/db/db.sqlite + Volumes{/appdata}, matching this mount + PORT=3000.
+        # - :latest was reverted: it drifted to a different image and reintroduced the nginx/Next.js EADDRINUSE issue.
+        # Redis sidecar (redis:7-alpine) below provides the 127.0.0.1:6379 cache homarr v1.32.0 expects,
+        # eliminating the prior ECONNREFUSED errors seen in the pod log.
+        image: ghcr.io/homarr-labs/homarr:v1.32.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 7575
@@ -29,8 +36,6 @@ spec:
           value: production
         - name: PORT
           value: "3000"
-        - name: DOCKER_HOSTNAMES
-          value: "localhost,host.docker.internal"
         - name: NEXT_PUBLIC_DEPLOYMENT
           value: "kubernetes"
         envFrom:
