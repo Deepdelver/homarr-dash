@@ -29,33 +29,29 @@ spec:
           value: production
         - name: DOCKER_HOSTNAMES
           value: "localhost,host.docker.internal"
-        - name: PORT
-          value: "7575"
         envFrom:
         - secretRef:
             name: homarr
             optional: true
         volumeMounts:
-        - name: database
-          mountPath: /app/data/database
-        - name: logs
-          mountPath: /app/data/logs
+        - name: appdata
+          mountPath: /appdata
         livenessProbe:
           httpGet:
             path: /api/health
             port: 7575
-          initialDelaySeconds: 30
+          initialDelaySeconds: 60
           periodSeconds: 30
           timeoutSeconds: 5
-          failureThreshold: 3
+          failureThreshold: 5
         readinessProbe:
           httpGet:
             path: /api/health
             port: 7575
-          initialDelaySeconds: 15
+          initialDelaySeconds: 30
           periodSeconds: 10
           timeoutSeconds: 5
-          failureThreshold: 3
+          failureThreshold: 5
         resources:
           requests:
             cpu: 50m
@@ -64,9 +60,7 @@ spec:
             cpu: 500m
             memory: 512Mi
       volumes:
-      - name: database
+      - name: appdata
         hostPath:
-          path: /var/lib/homarr/database
+          path: /var/lib/homarr/appdata
           type: DirectoryOrCreate
-      - name: logs
-        emptyDir: {}
