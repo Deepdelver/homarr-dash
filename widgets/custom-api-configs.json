@@ -1,0 +1,267 @@
+{
+  "$schema": "homarr-custom-widgets-v2",
+  "generatedAt": "2026-08-27",
+  "notes": "Homarr v2 Custom API widget definitions for services without native Homarr integration. Import each entry via Management -> Custom Widgets -> Import. Secrets (API keys/passwords) are intentionally NOT included (Homarr strips them from exports and requires re-entry after import) - set auth = 'none' for the public endpoints probed below, or 'apiKeyHeader'/'bearer' if you put these behind authenticated ingress. Every 'url' was verified live on 2026-08-27 (HTTP 200 + JSON). The legacy field names in the task brief (jsonPath, refreshInterval) are mapped here to Homarr v2 fields (displayType + displayConfig, refreshSeconds) - see 'displayConfig' per widget.",
+  "widgets": [
+    {
+      "name": "Grafana - Health",
+      "description": "Grafana version, DB status, and dashboard count",
+      "iconUrl": "https://cdn.simpleicons.org/grafana",
+      "url": "https://grafana.deeps-home.duckdns.org/api/health",
+      "authType": "none",
+      "method": "GET",
+      "displayType": "keyValue",
+      "displayConfig": {
+        "type": "keyValue",
+        "label": "Grafana",
+        "entries": [
+          { "label": "Version", "value": "{{ data.version }}" },
+          { "label": "Database", "value": "{{ data.database }}" }
+        ]
+      },
+      "refreshSeconds": 300,
+      "jsonPathRef": "$.version, $.database"
+    },
+    {
+      "name": "Grafana - Dashboards",
+      "description": "Count of provisioned dashboards",
+      "iconUrl": "https://cdn.simpleicons.org/grafana",
+      "url": "https://grafana.deeps-home.duckdns.org/api/search?type=dash-db&limit=1000",
+      "authType": "none",
+      "method": "GET",
+      "displayType": "singleValue",
+      "displayConfig": {
+        "type": "singleValue",
+        "label": "Grafana Dashboards",
+        "value": "{{ data.length }}",
+        "unit": ""
+      },
+      "refreshSeconds": 600,
+      "jsonPathRef": "$.length"
+    },
+    {
+      "name": "Prometheus - Alerts",
+      "description": "Number of currently firing alerts",
+      "iconUrl": "https://cdn.simpleicons.org/prometheus",
+      "url": "https://prometheus.deeps-home.duckdns.org/api/v1/alerts",
+      "authType": "none",
+      "method": "GET",
+      "displayType": "singleValue",
+      "displayConfig": {
+        "type": "singleValue",
+        "label": "Firing Alerts",
+        "value": "{{ data.data.alerts.length }}",
+        "unit": ""
+      },
+      "refreshSeconds": 60,
+      "jsonPathRef": "$.data.alerts.length"
+    },
+    {
+      "name": "Prometheus - Target Health",
+      "description": "Scrape target up/down counts",
+      "iconUrl": "https://cdn.simpleicons.org/prometheus",
+      "url": "https://prometheus.deeps-home.duckdns.org/api/v1/targets",
+      "authType": "none",
+      "method": "GET",
+      "displayType": "keyValue",
+      "displayConfig": {
+        "type": "keyValue",
+        "label": "Targets",
+        "entries": [
+          { "label": "Total", "value": "{{ data.data.activeTargets.length }}" },
+          { "label": "Up", "value": "{{ data.data.activeTargets.filter(t => t.health == 'up').length }}" },
+          { "label": "Down", "value": "{{ data.data.activeTargets.filter(t => t.health != 'up').length }}" }
+        ]
+      },
+      "refreshSeconds": 60,
+      "jsonPathRef": "$.data.activeTargets[*].health"
+    },
+    {
+      "name": "9router - Health",
+      "description": "9router model-routing gateway health",
+      "iconUrl": "https://cdn.simpleicons.org/fastapi",
+      "url": "https://9router.deeps-home.duckdns.org/api/health",
+      "authType": "none",
+      "method": "GET",
+      "displayType": "statusIndicator",
+      "displayConfig": {
+        "type": "statusIndicator",
+        "label": "9router",
+        "value": "{{ data.ok === true ? 'online' : 'offline' }}",
+        "successValue": "online"
+      },
+      "refreshSeconds": 120,
+      "jsonPathRef": "$.ok"
+    },
+    {
+      "name": "Hermes - Agent Sessions",
+      "description": "Hermes agent control plane: active/total sessions & model stats (served by buddy-hub manager API at manager.deeps-home.duckdns.org)",
+      "iconUrl": "https://cdn.simpleicons.org/hermes",
+      "url": "https://buddy.deeps-home.duckdns.org/api/acp/overview",
+      "authType": "none",
+      "method": "GET",
+      "displayType": "keyValue",
+      "displayConfig": {
+        "type": "keyValue",
+        "label": "Hermes (ACP)",
+        "entries": [
+          { "label": "Active Sessions", "value": "{{ data.data.active_sessions }}" },
+          { "label": "Total Sessions", "value": "{{ data.data.total_sessions }}" },
+          { "label": "API Calls", "value": "{{ data.data.api_calls }}" },
+          { "label": "Tool Calls", "value": "{{ data.data.tool_calls }}" }
+        ]
+      },
+      "refreshSeconds": 120,
+      "jsonPathRef": "$.data.active_sessions, $.data.total_sessions, $.data.api_calls, $.data.tool_calls"
+    },
+    {
+      "name": "Hermes - System at a glance",
+      "description": "Host CPU/RAM/disk from the Hermes manager host",
+      "iconUrl": "https://cdn.simpleicons.org/hermes",
+      "url": "https://buddy.deeps-home.duckdns.org/api/ataglance",
+      "authType": "none",
+      "method": "GET",
+      "displayType": "progressBars",
+      "displayConfig": {
+        "type": "progressBars",
+        "entries": [
+          { "label": "CPU %", "value": "{{ data.data.system.cpu }}", "max": 100 },
+          { "label": "RAM %", "value": "{{ data.data.system.ram_percent }}", "max": 100 },
+          { "label": "Disk %", "value": "{{ data.data.system.disk_percent }}", "max": 100 }
+        ]
+      },
+      "refreshSeconds": 120,
+      "jsonPathRef": "$.data.system.cpu, $.data.system.ram_percent, $.data.system.disk_percent"
+    },
+    {
+      "name": "OpenClaw - Bot Status",
+      "description": "OpenClaw Discord/Telegram bot liveness",
+      "iconUrl": "https://cdn.simpleicons.org/discord",
+      "url": "https://openclaw.deeps-home.duckdns.org/health",
+      "authType": "none",
+      "method": "GET",
+      "displayType": "statusIndicator",
+      "displayConfig": {
+        "type": "statusIndicator",
+        "label": "OpenClaw",
+        "value": "{{ data.ok === true && data.status == 'live' ? 'online' : 'offline' }}",
+        "successValue": "online"
+      },
+      "refreshSeconds": 120,
+      "jsonPathRef": "$.ok, $.status"
+    },
+    {
+      "name": "Qdrant - Collection Stats",
+      "description": "Vector count for the memories collection",
+      "iconUrl": "https://cdn.simpleicons.org/qdrant",
+      "url": "https://qdrant.deeps-home.duckdns.org/collections/memories",
+      "authType": "none",
+      "method": "GET",
+      "displayType": "keyValue",
+      "displayConfig": {
+        "type": "keyValue",
+        "label": "Qdrant (memories)",
+        "entries": [
+          { "label": "Points", "value": "{{ data.result.points_count }}" },
+          { "label": "Vectors", "value": "{{ data.result.indexed_vectors_count }}" },
+          { "label": "Status", "value": "{{ data.result.status }}" },
+          { "label": "Dim", "value": "{{ data.result.config.params.vectors.dense.size }}" }
+        ]
+      },
+      "refreshSeconds": 300,
+      "jsonPathRef": "$.result.points_count, $.result.indexed_vectors_count, $.result.status"
+    },
+    {
+      "name": "Qdrant - All Collections",
+      "description": "Names of all Qdrant collections",
+      "iconUrl": "https://cdn.simpleicons.org/qdrant",
+      "url": "https://qdrant.deeps-home.duckdns.org/collections",
+      "authType": "none",
+      "method": "GET",
+      "displayType": "table",
+      "displayConfig": {
+        "type": "table",
+        "columns": [
+          { "header": "Collection", "value": "{{ item.name }}" }
+        ]
+      },
+      "refreshSeconds": 600,
+      "jsonPathRef": "$.result.collections[*].name"
+    },
+    {
+      "name": "Buddy Hub - Service Health",
+      "description": "Buddy Hub API health summary",
+      "iconUrl": "https://cdn.simpleicons.org/nginx",
+      "url": "https://buddy.deeps-home.duckdns.org/api/health",
+      "authType": "none",
+      "method": "GET",
+      "displayType": "keyValue",
+      "displayConfig": {
+        "type": "keyValue",
+        "label": "Buddy Hub",
+        "entries": [
+          { "label": "Status", "value": "{{ data.status }}" },
+          { "label": "Service", "value": "{{ data.service }}" }
+        ]
+      },
+      "refreshSeconds": 120,
+      "jsonPathRef": "$.status, $.service"
+    },
+    {
+      "name": "Buddy Hub - System Stats",
+      "description": "Buddy Hub host CPU/RAM/disk",
+      "iconUrl": "https://cdn.simpleicons.org/nginx",
+      "url": "https://buddy.deeps-home.duckdns.org/api/ataglance",
+      "authType": "none",
+      "method": "GET",
+      "displayType": "progressBars",
+      "displayConfig": {
+        "type": "progressBars",
+        "entries": [
+          { "label": "CPU %", "value": "{{ data.data.system.cpu }}", "max": 100 },
+          { "label": "RAM %", "value": "{{ data.data.system.ram_percent }}", "max": 100 },
+          { "label": "Disk %", "value": "{{ data.data.system.disk_percent }}", "max": 100 }
+        ]
+      },
+      "refreshSeconds": 120,
+      "jsonPathRef": "$.data.system.cpu, $.data.system.ram_percent, $.data.system.disk_percent"
+    },
+    {
+      "name": "n8n - Health",
+      "description": "n8n workflow automation health",
+      "iconUrl": "https://cdn.simpleicons.org/n8n",
+      "url": "https://n8n.deeps-home.duckdns.org/healthz",
+      "authType": "none",
+      "method": "GET",
+      "displayType": "statusIndicator",
+      "displayConfig": {
+        "type": "statusIndicator",
+        "label": "n8n",
+        "value": "{{ data.status == 'ok' ? 'online' : 'offline' }}",
+        "successValue": "online"
+      },
+      "refreshSeconds": 120,
+      "jsonPathRef": "$.status"
+    },
+    {
+      "name": "SearXNG - Engine Config",
+      "description": "Search engine config: brand, version, category count (NOTE: /stats is HTML and /healthz is plaintext - /config is the only JSON endpoint suitable for a custom-api widget)",
+      "iconUrl": "https://cdn.simpleicons.org/duckduckgo",
+      "url": "https://searxng.deeps-home.duckdns.org/config",
+      "authType": "none",
+      "method": "GET",
+      "displayType": "keyValue",
+      "displayConfig": {
+        "type": "keyValue",
+        "label": "SearXNG",
+        "entries": [
+          { "label": "Autocomplete", "value": "{{ data.autocomplete }}" },
+          { "label": "Categories", "value": "{{ data.categories.length }}" },
+          { "label": "Engines", "value": "{{ data.engines.length }}" }
+        ]
+      },
+      "refreshSeconds": 600,
+      "jsonPathRef": "$.autocomplete, $.categories.length, $.engines.length"
+    }
+  ]
+}

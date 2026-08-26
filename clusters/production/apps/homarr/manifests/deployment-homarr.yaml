@@ -20,10 +20,9 @@ spec:
       containers:
       - name: homarr
         # Pinned to the real latest stable v1.x release.
-        # - 0.156.0 (spec'd originally) does NOT exist on ghcr.io (registry 404).
-        # - v1.76.0 also does NOT exist; highest real tag is v1.32.0 (verified via ghcr.io, 2026-08-27).
-        # - v1.32.0 declares DB_URL=/appdata/db/db.sqlite + Volumes{/appdata}, matching this mount + PORT=3000.
-        # - v1.32.0 includes a built-in Redis server (no sidecar needed).
+        # - v1.32.0 declares DB_URL=/appdata/db/db.sqlite + Volumes{/appdata}
+        # - v1.32.0 requires external Redis (REDIS_URL env var)
+        # - PORT=3000 because nginx front-door listens on 7575
         image: ghcr.io/homarr-labs/homarr:v1.32.0
         imagePullPolicy: IfNotPresent
         ports:
@@ -36,6 +35,8 @@ spec:
           value: "3000"
         - name: NEXT_PUBLIC_DEPLOYMENT
           value: "kubernetes"
+        - name: REDIS_URL
+          value: "redis://localhost:6379"
         envFrom:
         - secretRef:
             name: homarr
@@ -66,7 +67,26 @@ spec:
           limits:
             cpu: 500m
             memory: 512Mi
+      - name: redis
+        image: redis:7-alpine
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 6379
+          name: redis
+        command: ["redis-server", "--appendonly", "yes", "--save", "60", "1"]
+        volumeMounts:
+        - name: redis-data
+          mountPath: /data
+        resources:
+          requests:
+            cpu: 25m
+            memory: 64Mi
+          limits:
+            cpu: 100m
+            memory: 128Mi
       volumes:
       - name: data
         persistentVolumeClaim:
           claimName: homarr-database
+      - name: redis-data
+        emptyDir: {}
