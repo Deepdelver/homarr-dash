@@ -20,8 +20,7 @@ spec:
       containers:
       - name: homarr
         # Pinned to the real latest stable v1.x release.
-        # - v1.32.0 declares DB_URL=/appdata/db/db.sqlite + Volumes{/appdata}
-        # - v1.32.0 starts its OWN internal Redis server (no sidecar needed/conflicting)
+        # - v1.32.0 requires external Redis via REDIS_URL
         # - PORT=3000 because nginx front-door listens on 7575
         image: ghcr.io/homarr-labs/homarr:v1.32.0
         imagePullPolicy: IfNotPresent
@@ -64,8 +63,27 @@ spec:
             memory: 256Mi
           limits:
             cpu: 500m
-            memory: 1Gi
+            memory: 512Mi
+      - name: redis
+        image: redis:7-alpine
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 6379
+          name: redis
+        command: ["redis-server", "--appendonly", "yes", "--save", "60", "1"]
+        volumeMounts:
+        - name: redis-data
+          mountPath: /data
+        resources:
+          requests:
+            cpu: 25m
+            memory: 64Mi
+          limits:
+            cpu: 100m
+            memory: 128Mi
       volumes:
       - name: data
         persistentVolumeClaim:
           claimName: homarr-database
+      - name: redis-data
+        emptyDir: {}
