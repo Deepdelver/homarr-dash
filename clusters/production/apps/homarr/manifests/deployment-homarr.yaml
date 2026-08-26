@@ -19,12 +19,9 @@ spec:
     spec:
       containers:
       - name: homarr
-        # Pinned to the real stable v1.x release (v1.32.0 — verified on ghcr, 2026-08-27).
-        # NOTE: homarr v1.32.0 runs its OWN built-in Redis server (REDIS_IS_EXTERNAL=false,
-        # listening on 127.0.0.1:6379 inside the container). Do NOT add a redis sidecar —
-        # it logs "Address in use" on 6379 and adds no value. The only real fix for the
-        # earlier OOMKilled was raising the memory limit below (512Mi was too small for
-        # the Next.js + built-in redis process under load).
+        # Pinned: v1.32.0 (verified on ghcr.io, 2026-08-27).
+        # - Includes built-in Redis — do NOT add sidecar or REDIS_URL.
+        # - PORT=3000: nginx front-door listens on 7575, proxies to Next.js on 3000.
         image: ghcr.io/homarr-labs/homarr:v1.32.0
         imagePullPolicy: IfNotPresent
         ports:
@@ -48,7 +45,7 @@ spec:
           httpGet:
             path: /
             port: 7575
-          initialDelaySeconds: 60
+          initialDelaySeconds: 90
           periodSeconds: 30
           timeoutSeconds: 5
           failureThreshold: 5
@@ -56,7 +53,7 @@ spec:
           httpGet:
             path: /
             port: 7575
-          initialDelaySeconds: 30
+          initialDelaySeconds: 60
           periodSeconds: 10
           timeoutSeconds: 5
           failureThreshold: 5
@@ -66,7 +63,7 @@ spec:
             memory: 256Mi
           limits:
             cpu: 500m
-            memory: 1Gi
+            memory: 512Mi
       volumes:
       - name: data
         persistentVolumeClaim:
