@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: deeps-home-tls
+  namespace: homarr
+spec:
+  secretName: deeps-home-tls
+  dnsNames:
+  - homarr.deeps-home.duckdns.org
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  secretTemplate:
+    labels:
+      app.kubernetes.io/managed-by: cert-manager

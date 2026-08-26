@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homarr
+  namespace: homarr
+  labels:
+    app: homarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: homarr
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: homarr
+    spec:
+      containers:
+      - name: homarr
+        image: ghcr.io/homarr-labs/homarr:0.156.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 7575
+          name: http
+        env:
+        - name: NODE_ENV
+          value: production
+        - name: DOCKER_HOSTNAMES
+          value: "localhost,host.docker.internal"
+        - name: PORT
+          value: "7575"
+        envFrom:
+        - secretRef:
+            name: homarr
+            optional: true
+        volumeMounts:
+        - name: database
+          mountPath: /app/data/database
+        - name: logs
+          mountPath: /app/data/logs
+        livenessProbe:
+          httpGet:
+            path: /api/health
+            port: 7575
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /api/health
+            port: 7575
+          initialDelaySeconds: 15
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 500m
+            memory: 512Mi
+      volumes:
+      - name: database
+        persistentVolumeClaim:
+          claimName: homarr-database
+      - name: logs
+        emptyDir: {}

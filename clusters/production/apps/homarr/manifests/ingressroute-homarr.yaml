@@ -1,0 +1,16 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: homarr
+  namespace: homarr
+spec:
+  entryPoints:
+  - websecure
+  routes:
+  - match: Host(`homarr.deeps-home.duckdns.org`) && PathPrefix(`/`)
+    kind: Rule
+    services:
+    - name: homarr
+      port: 7575
+  tls:
+    secretName: deeps-home-tls

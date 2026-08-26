@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- namespace-homarr.yaml
+- service-homarr.yaml
+- deployment-homarr.yaml
+- ingressroute-homarr.yaml
+- certificate.yaml
+- persistentvolumeclaim-homarr-database.yaml
+- secret-homarr.yaml
