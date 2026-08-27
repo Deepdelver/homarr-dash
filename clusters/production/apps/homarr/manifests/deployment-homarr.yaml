@@ -38,6 +38,17 @@ spec:
           value: production
         - name: PORT
           value: "3000"
+        # PITFALL (2026-08-27, t_85fb7389/t_e6ac0b3f): Proxmox (192.168.1.253:8006)
+        # serves a self-signed "PVE Cluster Manager CA" cert whose ROOT is not
+        # retrievable (the /pve-root-ca.pem endpoint returns a 32-byte stub, and
+        # only the leaf cert is sent in the TLS handshake). Homarr's Node backend
+        # does normal TLS verification and rejects it (UNABLE_TO_VERIFY_LEAF_SIGNATURE),
+        # so the PROXMOX CLUSTER widget shows "Failed to fetch status".
+        # v1.32.0 has no in-app TLS-skip/CA-upload, so we disable cert verification
+        # for this Node process (homelab-acceptable; the only deployable fix since
+        # the PVE root CA cannot be obtained without Proxmox host access).
+        - name: NODE_TLS_REJECT_UNAUTHORIZED
+          value: "0"
         envFrom:
         - secretRef:
             name: homarr
