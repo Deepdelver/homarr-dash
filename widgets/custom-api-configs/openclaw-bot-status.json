@@ -1,0 +1,11 @@
+{
+  "name": "OpenClaw Bot Status",
+  "url": "https://openclaw.deeps-home.duckdns.org/health",
+  "method": "GET",
+  "headers": {},
+  "jsonPath": {
+    "status": "$.status",
+    "ok": "$.ok"
+  },
+  "display": "OpenClaw: {status} (ok={ok})"
+}

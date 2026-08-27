@@ -1,0 +1,10 @@
+{
+  "name": "9router Model Health",
+  "url": "https://9router.deeps-home.duckdns.org/api/health",
+  "method": "GET",
+  "headers": {},
+  "jsonPath": {
+    "ok": "$.ok"
+  },
+  "display": "9router: ok={ok}"
+}

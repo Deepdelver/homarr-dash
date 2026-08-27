@@ -45,7 +45,18 @@
         { "name": "Hermes Manager", "type": "app", "url": "https://manager.deeps-home.duckdns.org", "icon": "hermes", "x": 0, "y": 7, "w": 3, "h": 2 },
         { "name": "Buddy Hub", "type": "app", "url": "https://buddy.deeps-home.duckdns.org", "icon": "nginx", "x": 3, "y": 7, "w": 3, "h": 2 },
         { "name": "Grafana", "type": "app", "url": "https://grafana.deeps-home.duckdns.org", "icon": "grafana", "x": 6, "y": 7, "w": 3, "h": 2 },
-        { "name": "Cinephile", "type": "app", "url": "https://movies.deepdelver.duckdns.org", "icon": "plex", "x": 9, "y": 7, "w": 3, "h": 2 }
+        { "name": "Cinephile", "type": "app", "url": "https://movies.deepdelver.duckdns.org", "icon": "plex", "x": 9, "y": 7, "w": 3, "h": 2 },
+        { "name": "DJ Portaal", "type": "app", "url": "https://dj-portaal.deeps-home.duckdns.org", "icon": "musicbrainz", "x": 0, "y": 9, "w": 3, "h": 2 },
+        { "name": "LiteLLM", "type": "app", "url": "https://litellm.deeps-home.duckdns.org", "icon": "fastapi", "x": 3, "y": 9, "w": 3, "h": 2 }
+      ]
+    },
+    {
+      "id": "media-aggregators",
+      "title": "Media Aggregators (custom-api status + health)",
+      "widgets": [
+        { "name": "Cinephile - Health", "x": 0, "y": 11, "w": 4, "h": 2 },
+        { "name": "DJ Portaal - Health", "x": 4, "y": 11, "w": 4, "h": 2 },
+        { "name": "LiteLLM - Health", "x": 8, "y": 11, "w": 2, "h": 2 }
       ]
     }
   ]

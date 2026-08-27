@@ -262,6 +262,65 @@
       },
       "refreshSeconds": 600,
       "jsonPathRef": "$.autocomplete, $.categories.length, $.engines.length"
+    },
+    {
+      "name": "LiteLLM - Health",
+      "description": "LiteLLM proxy readiness (db connectivity). Uses /health/readiness which needs NO master key (unlike /health and /v1/models, which return 401 without auth). Auth is still wired in Homarr so the dashboard's authenticated calls work; the readiness probe itself is public.",
+      "iconUrl": "https://cdn.simpleicons.org/fastapi",
+      "url": "https://litellm.deeps-home.duckdns.org/health/readiness",
+      "authType": "none",
+      "method": "GET",
+      "displayType": "statusIndicator",
+      "displayConfig": {
+        "type": "statusIndicator",
+        "label": "LiteLLM",
+        "value": "{{ data.status === 'healthy' && data.db === 'connected' ? 'online' : 'degraded' }}",
+        "successValue": "online"
+      },
+      "refreshSeconds": 120,
+      "jsonPathRef": "$.status, $.db",
+      "credentialNote": "Readiness probe is public (no key). The LiteLLM master key (BWS: LITELLM_MASTER_KEY) is available if you prefer to poll the authenticated /health or /v1/models endpoints instead — set authType 'bearer' and paste the key in the Homarr UI."
+    },
+    {
+      "name": "Cinephile - Health",
+      "description": "Cinephile media-request aggregator: overall status + upstream dependency health",
+      "iconUrl": "https://cdn.simpleicons.org/plex",
+      "url": "https://cinephile.deeps-home.duckdns.org/health",
+      "authType": "none",
+      "method": "GET",
+      "displayType": "keyValue",
+      "displayConfig": {
+        "type": "keyValue",
+        "label": "Cinephile",
+        "entries": [
+          { "label": "Status", "value": "{{ data.status }}" },
+          { "label": "Plex", "value": "{{ data.upstreams.plex.status }}" },
+          { "label": "TMDB", "value": "{{ data.upstreams.tmdb.status }}" },
+          { "label": "Trakt", "value": "{{ data.upstreams.trakt.status }}" }
+        ]
+      },
+      "refreshSeconds": 180,
+      "jsonPathRef": "$.status, $.upstreams.plex.status, $.upstreams.tmdb.status, $.upstreams.trakt.status"
+    },
+    {
+      "name": "DJ Portaal - Health",
+      "description": "DJ Portaal music-request portal: app status, version, DB health",
+      "iconUrl": "https://cdn.simpleicons.org/musicbrainz",
+      "url": "https://dj-portaal.deeps-home.duckdns.org/api/health",
+      "authType": "none",
+      "method": "GET",
+      "displayType": "keyValue",
+      "displayConfig": {
+        "type": "keyValue",
+        "label": "DJ Portaal",
+        "entries": [
+          { "label": "Status", "value": "{{ data.status }}" },
+          { "label": "Version", "value": "{{ data.version }}" },
+          { "label": "DB OK", "value": "{{ data.db_ok }}" }
+        ]
+      },
+      "refreshSeconds": 180,
+      "jsonPathRef": "$.status, $.version, $.db_ok"
     }
   ]
 }

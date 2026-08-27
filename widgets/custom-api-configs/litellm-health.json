@@ -1,0 +1,11 @@
+{
+  "name": "LiteLLM Health",
+  "url": "https://litellm.deeps-home.duckdns.org/health/readiness",
+  "method": "GET",
+  "headers": {},
+  "jsonPath": {
+    "status": "$.status",
+    "db": "$.db"
+  },
+  "display": "LiteLLM: status={status} db={db}"
+}

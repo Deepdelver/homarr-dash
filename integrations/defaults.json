@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "homarr-integration-defaults-v1",
+  "generatedAt": "2026-08-27T01:38:43.255453+00:00",
+  "note": "Built-in Homarr registry integrations (no credentials configured). Documented for completeness.",
+  "integrations": [
+    {
+      "id": "mwy4ihizrd3r6i86rq2uqda2",
+      "name": "Github Default",
+      "url": "https://api.github.com",
+      "kind": "github",
+      "secrets": []
+    },
+    {
+      "id": "lze955itijrwjxwn3t7egbgz",
+      "name": "Docker Hub Default",
+      "url": "https://hub.docker.com",
+      "kind": "dockerHub",
+      "secrets": []
+    },
+    {
+      "id": "oizkytzccpxzpj5opw8crelx",
+      "name": "Gitlab Default",
+      "url": "https://gitlab.com",
+      "kind": "gitlab",
+      "secrets": []
+    },
+    {
+      "id": "e376vncs02b8kvtr9wc72qlc",
+      "name": "NPM Default",
+      "url": "https://registry.npmjs.org",
+      "kind": "npm",
+      "secrets": []
+    },
+    {
+      "id": "s07wu4006xtlfb8el9kkqh7a",
+      "name": "Codeberg Default",
+      "url": "https://codeberg.org",
+      "kind": "codeberg",
+      "secrets": []
+    },
+    {
+      "id": "bnfmbs6r8logmhnxzkr296e4",
+      "name": "LinuxServer.io Default",
+      "url": "https://api.linuxserver.io",
+      "kind": "linuxServerIO",
+      "secrets": []
+    },
+    {
+      "id": "rjnkjlez24s7chqd8xe22upm",
+      "name": "GitHub Container Registry Default",
+      "url": "https://api.github.com",
+      "kind": "gitHubContainerRegistry",
+      "secrets": []
+    },
+    {
+      "id": "w2nld9glaki0hsvex8uxcdfn",
+      "name": "Quay Default",
+      "url": "https://quay.io",
+      "kind": "quay",
+      "secrets": []
+    }
+  ]
+}

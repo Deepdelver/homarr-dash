@@ -1,0 +1,11 @@
+{
+  "name": "Buddy Hub Status",
+  "url": "https://buddy.deeps-home.duckdns.org/api/health",
+  "method": "GET",
+  "headers": {},
+  "jsonPath": {
+    "status": "$.status",
+    "service": "$.service"
+  },
+  "display": "Buddy Hub: {status} ({service})"
+}

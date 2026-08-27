@@ -1,0 +1,13 @@
+{
+  "name": "Cinephile Health",
+  "url": "https://cinephile.deeps-home.duckdns.org/health",
+  "method": "GET",
+  "headers": {},
+  "jsonPath": {
+    "status": "$.status",
+    "plex": "$.upstreams.plex.status",
+    "tmdb": "$.upstreams.tmdb.status",
+    "trakt": "$.upstreams.trakt.status"
+  },
+  "display": "Cinephile: {status} (plex={plex}, tmdb={tmdb}, trakt={trakt})"
+}

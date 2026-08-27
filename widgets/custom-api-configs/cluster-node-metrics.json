@@ -1,0 +1,13 @@
+{
+  "name": "Cluster Node Metrics",
+  "url": "https://buddy.deeps-home.duckdns.org/api/ataglance",
+  "method": "GET",
+  "headers": {},
+  "jsonPath": {
+    "hostname": "$.data.system.hostname",
+    "cpu": "$.data.system.cpu",
+    "ram": "$.data.system.ram_percent",
+    "disk": "$.data.system.disk_percent"
+  },
+  "display": "{hostname}: CPU {cpu}%, RAM {ram}%, Disk {disk}%"
+}

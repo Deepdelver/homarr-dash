@@ -1,0 +1,12 @@
+{
+  "name": "Hermes Agent Status",
+  "url": "https://manager.deeps-home.duckdns.org/api/ataglance",
+  "method": "GET",
+  "headers": {},
+  "jsonPath": {
+    "ok": "$.ok",
+    "active_sessions": "$.data.acp_overview.active_sessions",
+    "total_sessions": "$.data.acp_overview.total_sessions"
+  },
+  "display": "Hermes: ok={ok}, active sessions={active_sessions}/{total_sessions}"
+}

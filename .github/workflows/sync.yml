@@ -1,0 +1,87 @@
+name: sync-homarr-board
+on:
+  push:
+    paths:
+      - 'boards/home.json'
+      - 'integrations/**'
+  workflow_dispatch:
+
+# Board-as-Code: re-apply the committed board to the live Homarr instance via its
+# management API (board.saveBoard). Disabled by default to avoid clobbering in-cluster
+# edits — enable by setting repo/Environment secret ENABLE_BOARD_APPLY=true.
+#
+# Required secrets (set in repo Settings > Secrets > Actions):
+#   HOMARR_URL      e.g. https://homarr.deeps-home.duckdns.org
+#   HOMARR_API_KEY  admin API key (from BWS HOMARR_ADMIN_PASSWORD / Settings > API keys)
+#   ENABLE_BOARD_APPLY  "true" to actually apply; anything else = validate-only
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate JSON
+        run: |
+          python3 -c "import json,sys; json.load(open('boards/home.json')); print('boards/home.json OK')"
+          for f in integrations/*.json; do python3 -c "import json; json.load(open('$f')); print('$f OK')"; done
+      - name: Assert no real secrets committed
+        run: |
+          # Integration secret files must use the BWS redaction marker, never real values.
+          # A real secret is a long hex/apiKey token; the export replaces those with <REDACTED_BWS>.
+          if grep -rqE '<REDACTED_BWS>' integrations boards; then
+            echo "redaction marker present (expected)"
+          else
+            echo "::warning::No <REDACTED_BWS> marker found in export — verify secrets are not real"
+          fi
+          # Reject any obviously-real 32+ char hex/opaque secret in the integration/board exports.
+          if grep -rqE '"value"[[:space:]]*:[[:space:]]*"[0-9a-f]{32,}"' integrations boards; then
+            echo "::error::A real-looking secret value appears to be committed. Aborting."; exit 1
+          fi
+          echo "secret-scan OK"
+
+  apply:
+    needs: validate
+    if: ${{ secrets.ENABLE_BOARD_APPLY == 'true' }}
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply board to Homarr
+        env:
+          HOMARR_URL: ${{ secrets.HOMARR_URL }}
+          HOMARR_API_KEY: ${{ secrets.HOMARR_API_KEY }}
+        run: |
+          python3 - <<'PY'
+          import json, os, urllib.request
+          url = os.environ["HOMARR_URL"].rstrip("/")
+          key = os.environ["HOMARR_API_KEY"]
+          board = json.load(open("boards/home.json"))
+          payload = {
+            "0": {
+              "json": {
+                "id": board["board"]["id"],
+                "name": board["board"]["name"],
+                "isPublic": board["board"]["is_public"],
+                "sections": [board["section"]],
+                "layouts": [board["layout"]],
+                "items": [
+                  {"id": it["id"], "kind": it["kind"], "options": it["options"],
+                   "advancedOptions": it["advancedOptions"], "integrationId": it["integrationId"]}
+                  for it in board["items"]
+                ],
+              }
+            }
+          }
+          req = urllib.request.Request(
+            f"{url}/api/trpc/board.saveBoard?batch=1",
+            data=json.dumps(payload).encode(),
+            headers={"Content-Type": "application/json", "x-api-key": key},
+            method="POST",
+          )
+          with urllib.request.urlopen(req, timeout=30) as r:
+            print("apply status", r.status)
+          print("board applied")
+          PY

@@ -1,0 +1,12 @@
+{
+  "name": "DJ Portaal Health",
+  "url": "https://dj-portaal.deeps-home.duckdns.org/api/health",
+  "method": "GET",
+  "headers": {},
+  "jsonPath": {
+    "status": "$.status",
+    "version": "$.version",
+    "db_ok": "$.db_ok"
+  },
+  "display": "DJ Portaal: {status} v{version} db_ok={db_ok}"
+}

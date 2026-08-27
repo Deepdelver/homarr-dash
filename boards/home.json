@@ -1,0 +1,612 @@
+{
+  "schemaVersion": "homarr-board-export-v1",
+  "generatedAt": "2026-08-27T01:38:43.255453+00:00",
+  "source": "live Homarr DB (k3s ns=homarr, PVC=homarr-database) /appdata/db/db.sqlite",
+  "notes": "Board content lives in the Homarr SQLite DB (PVC), not in git. This file is the source-of-truth snapshot. Re-apply via the Homarr management API (board.saveBoard) using .github/workflows/sync.yml. Secrets are never included here.",
+  "board": {
+    "id": "og15c9dzzqhkfppy2ne9mhoc",
+    "name": "Home",
+    "is_public": 0,
+    "creator_id": "sa9qmeoxj2kp4caeo07h6y4n",
+    "page_title": null,
+    "meta_title": null,
+    "logo_image_url": null,
+    "favicon_image_url": null,
+    "background_image_url": null,
+    "background_image_attachment": "fixed",
+    "background_image_repeat": "no-repeat",
+    "background_image_size": "cover",
+    "primary_color": "#fa5252",
+    "secondary_color": "#fd7e14",
+    "opacity": 100,
+    "custom_css": null,
+    "disable_status": 0,
+    "item_radius": "lg",
+    "icon_color": null
+  },
+  "layout": {
+    "id": "vq1qbqhg2awp58jps4ys8ntf",
+    "name": "Base",
+    "board_id": "og15c9dzzqhkfppy2ne9mhoc",
+    "column_count": 6,
+    "breakpoint": 0
+  },
+  "section": {
+    "id": "t1d5weem8dhylbhudesxiwq9",
+    "board_id": "og15c9dzzqhkfppy2ne9mhoc",
+    "kind": "empty",
+    "x_offset": 0,
+    "y_offset": 0,
+    "name": null,
+    "options": "{\"json\": {}}"
+  },
+  "items": [
+    {
+      "id": "w_qxd455gvjar",
+      "kind": "clock",
+      "options": {
+        "json": {}
+      },
+      "advancedOptions": {
+        "json": {
+          "title": "Clock",
+          "customCssClasses": [],
+          "borderColor": ""
+        }
+      },
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "width": 1,
+        "height": 1
+      },
+      "integrationId": null
+    },
+    {
+      "id": "w_cpvejexq8xl",
+      "kind": "weather",
+      "options": {
+        "json": {
+          "isFormatFahrenheit": false,
+          "disableTemperatureDecimals": false,
+          "showCurrentWindSpeed": false,
+          "location": {
+            "name": "Utrecht",
+            "latitude": 52.0907,
+            "longitude": 5.1214,
+            "country": "NL",
+            "timezone": "Europe/Amsterdam"
+          },
+          "dateFormat": "dddd, MMMM D",
+          "showCity": true,
+          "hasForecast": true,
+          "forecastDayCount": 3
+        }
+      },
+      "advancedOptions": {
+        "json": {
+          "title": "Weather",
+          "customCssClasses": [],
+          "borderColor": ""
+        }
+      },
+      "layout": {
+        "x": 1,
+        "y": 0,
+        "width": 1,
+        "height": 1
+      },
+      "integrationId": null
+    },
+    {
+      "id": "w_ll3nn0m1nd",
+      "kind": "notebook",
+      "options": {
+        "json": {
+          "content": "# Quick Links\n- [Homarr](https://homarr.deeps-home.duckdns.org)\n- [Home Assistant](https://deepdelver.duckdns.org:8123)\n- [OpenClaw](https://openclaw.deeps-home.duckdns.org)\n- [9router](https://9router.deeps-home.duckdns.org)\n- [Buddy Hub](https://buddy.deeps-home.duckdns.org)\n- [Proxmox](https://deepdelver.duckdns.org:8006)"
+        }
+      },
+      "advancedOptions": {
+        "json": {
+          "title": "Quick Links",
+          "customCssClasses": [],
+          "borderColor": ""
+        }
+      },
+      "layout": {
+        "x": 2,
+        "y": 0,
+        "width": 2,
+        "height": 2
+      },
+      "integrationId": null
+    },
+    {
+      "id": "w_0mxmih1sboei",
+      "kind": "smartHome-entityState",
+      "options": {
+        "json": {
+          "entityId": "light.light_tv",
+          "displayName": "TV light",
+          "entityUnit": "",
+          "clickable": true
+        }
+      },
+      "advancedOptions": {
+        "json": {
+          "title": "TV Light",
+          "customCssClasses": [],
+          "borderColor": ""
+        }
+      },
+      "layout": {
+        "x": 4,
+        "y": 0,
+        "width": 1,
+        "height": 1
+      },
+      "integrationId": "avd0frupn72xwf4plopo176h"
+    },
+    {
+      "id": "w_t099gyzfko",
+      "kind": "smartHome-entityState",
+      "options": {
+        "json": {
+          "entityId": "sensor.air_keuken_temperature",
+          "displayName": "Kitchen temp",
+          "entityUnit": "\u00b0C",
+          "clickable": false
+        }
+      },
+      "advancedOptions": {
+        "json": {
+          "title": "Kitchen Temp",
+          "customCssClasses": [],
+          "borderColor": ""
+        }
+      },
+      "layout": {
+        "x": 5,
+        "y": 0,
+        "width": 1,
+        "height": 1
+      },
+      "integrationId": "avd0frupn72xwf4plopo176h"
+    },
+    {
+      "id": "w_8jkxm24c9kn",
+      "kind": "smartHome-executeAutomation",
+      "options": {
+        "json": {
+          "entityId": "automation.dim_lights_based_on_sun_elevation",
+          "displayName": "Dim lights (sun)"
+        }
+      },
+      "advancedOptions": {
+        "json": {
+          "title": "HA Automation",
+          "customCssClasses": [],
+          "borderColor": ""
+        }
+      },
+      "layout": {
+        "x": 4,
+        "y": 1,
+        "width": 1,
+        "height": 1
+      },
+      "integrationId": "avd0frupn72xwf4plopo176h"
+    },
+    {
+      "id": "w_ol84jmefsx",
+      "kind": "smartHome-entityState",
+      "options": {
+        "json": {
+          "entityId": "light.light_gang",
+          "displayName": "Hall light",
+          "entityUnit": "",
+          "clickable": true
+        }
+      },
+      "advancedOptions": {
+        "json": {
+          "title": "Hall Light",
+          "customCssClasses": [],
+          "borderColor": ""
+        }
+      },
+      "layout": {
+        "x": 5,
+        "y": 1,
+        "width": 1,
+        "height": 1
+      },
+      "integrationId": "avd0frupn72xwf4plopo176h"
+    },
+    {
+      "id": "w_039s36u1yplb",
+      "kind": "healthMonitoring",
+      "options": {
+        "json": {
+          "fahrenheit": false,
+          "cpu": true,
+          "memory": true,
+          "showUptime": true,
+          "fileSystem": true,
+          "visibleClusterSections": [
+            "cpu",
+            "memory",
+            "uptime",
+            "fileSystem"
+          ],
+          "defaultTab": "cluster",
+          "sectionIndicatorRequirement": "all"
+        }
+      },
+      "advancedOptions": {
+        "json": {
+          "title": "Proxmox Cluster",
+          "customCssClasses": [],
+          "borderColor": ""
+        }
+      },
+      "layout": {
+        "x": 0,
+        "y": 2,
+        "width": 3,
+        "height": 1
+      },
+      "integrationId": "prox01w3j5k7m9n1p3r5t7v9x1z"
+    },
+    {
+      "id": "w_efmrsmn0k1g",
+      "kind": "iframe",
+      "options": {
+        "json": {
+          "embedUrl": "https://openclaw.deeps-home.duckdns.org/health",
+          "allowFullScreen": false,
+          "allowScrolling": true,
+          "allowTransparency": false,
+          "allowPayment": false,
+          "allowAutoPlay": false,
+          "allowMicrophone": false,
+          "allowCamera": false,
+          "allowGeolocation": false
+        }
+      },
+      "advancedOptions": {
+        "json": {
+          "title": "OpenClaw",
+          "customCssClasses": [],
+          "borderColor": ""
+        }
+      },
+      "layout": {
+        "x": 3,
+        "y": 2,
+        "width": 1,
+        "height": 1
+      },
+      "integrationId": null
+    },
+    {
+      "id": "w_1ylkfi5mqll",
+      "kind": "iframe",
+      "options": {
+        "json": {
+          "embedUrl": "https://9router.deeps-home.duckdns.org/api/health",
+          "allowFullScreen": false,
+          "allowScrolling": true,
+          "allowTransparency": false,
+          "allowPayment": false,
+          "allowAutoPlay": false,
+          "allowMicrophone": false,
+          "allowCamera": false,
+          "allowGeolocation": false
+        }
+      },
+      "advancedOptions": {
+        "json": {
+          "title": "9router",
+          "customCssClasses": [],
+          "borderColor": ""
+        }
+      },
+      "layout": {
+        "x": 4,
+        "y": 2,
+        "width": 1,
+        "height": 1
+      },
+      "integrationId": null
+    },
+    {
+      "id": "w_d05bhleg4d",
+      "kind": "iframe",
+      "options": {
+        "json": {
+          "embedUrl": "https://manager.deeps-home.duckdns.org/api/ataglance",
+          "allowFullScreen": false,
+          "allowScrolling": true,
+          "allowTransparency": false,
+          "allowPayment": false,
+          "allowAutoPlay": false,
+          "allowMicrophone": false,
+          "allowCamera": false,
+          "allowGeolocation": false
+        }
+      },
+      "advancedOptions": {
+        "json": {
+          "title": "Hermes",
+          "customCssClasses": [],
+          "borderColor": ""
+        }
+      },
+      "layout": {
+        "x": 5,
+        "y": 2,
+        "width": 1,
+        "height": 1
+      },
+      "integrationId": null
+    },
+    {
+      "id": "w_nxbrf2ktu2r",
+      "kind": "iframe",
+      "options": {
+        "json": {
+          "embedUrl": "https://qdrant.deeps-home.duckdns.org/dashboard",
+          "allowFullScreen": false,
+          "allowScrolling": true,
+          "allowTransparency": false,
+          "allowPayment": false,
+          "allowAutoPlay": false,
+          "allowMicrophone": false,
+          "allowCamera": false,
+          "allowGeolocation": false
+        }
+      },
+      "advancedOptions": {
+        "json": {
+          "title": "Qdrant",
+          "customCssClasses": [],
+          "borderColor": ""
+        }
+      },
+      "layout": {
+        "x": 0,
+        "y": 3,
+        "width": 1,
+        "height": 1
+      },
+      "integrationId": null
+    },
+    {
+      "id": "w_bkt74uzi23r",
+      "kind": "iframe",
+      "options": {
+        "json": {
+          "embedUrl": "https://buddy.deeps-home.duckdns.org/api/health",
+          "allowFullScreen": false,
+          "allowScrolling": true,
+          "allowTransparency": false,
+          "allowPayment": false,
+          "allowAutoPlay": false,
+          "allowMicrophone": false,
+          "allowCamera": false,
+          "allowGeolocation": false
+        }
+      },
+      "advancedOptions": {
+        "json": {
+          "title": "Buddy Hub",
+          "customCssClasses": [],
+          "borderColor": ""
+        }
+      },
+      "layout": {
+        "x": 1,
+        "y": 3,
+        "width": 1,
+        "height": 1
+      },
+      "integrationId": null
+    },
+    {
+      "id": "w_owkso56q7k",
+      "kind": "iframe",
+      "options": {
+        "json": {
+          "embedUrl": "https://manager.deeps-home.duckdns.org/api/ataglance",
+          "allowFullScreen": false,
+          "allowScrolling": true,
+          "allowTransparency": false,
+          "allowPayment": false,
+          "allowAutoPlay": false,
+          "allowMicrophone": false,
+          "allowCamera": false,
+          "allowGeolocation": false
+        }
+      },
+      "advancedOptions": {
+        "json": {
+          "title": "Cluster Metrics",
+          "customCssClasses": [],
+          "borderColor": ""
+        }
+      },
+      "layout": {
+        "x": 2,
+        "y": 3,
+        "width": 1,
+        "height": 1
+      },
+      "integrationId": null
+    },
+    {
+      "id": "w_hvu7k9h0hm9",
+      "kind": "releases",
+      "options": {
+        "json": {}
+      },
+      "advancedOptions": {
+        "json": {
+          "title": "Release feed",
+          "customCssClasses": [],
+          "borderColor": ""
+        }
+      },
+      "layout": {
+        "x": 4,
+        "y": 3,
+        "width": 1,
+        "height": 1
+      },
+      "integrationId": null
+    },
+    {
+      "id": "w_ndt1pgq702j",
+      "kind": "calendar",
+      "options": {
+        "json": {}
+      },
+      "advancedOptions": {
+        "json": {
+          "title": "Calendar",
+          "customCssClasses": [],
+          "borderColor": ""
+        }
+      },
+      "layout": {
+        "x": 5,
+        "y": 3,
+        "width": 1,
+        "height": 1
+      },
+      "integrationId": null
+    },
+    {
+      "id": "w_74iurr65i4n",
+      "kind": "notebook",
+      "options": {
+        "json": {
+          "content": "# Homarr master board\nBuilt via board.saveBoard (ops, 2026-08-27).\nIntegrations: Home Assistant (smart home), Proxmox (infra health).\nService monitors embed live health endpoints (v1.32.0 has no customApi widget)."
+        }
+      },
+      "advancedOptions": {
+        "json": {
+          "title": "Notes",
+          "customCssClasses": [],
+          "borderColor": ""
+        }
+      },
+      "layout": {
+        "x": 0,
+        "y": 4,
+        "width": 3,
+        "height": 1
+      },
+      "integrationId": null
+    }
+  ],
+  "integrations": [
+    {
+      "id": "mwy4ihizrd3r6i86rq2uqda2",
+      "name": "Github Default",
+      "url": "https://api.github.com",
+      "kind": "github",
+      "secrets": []
+    },
+    {
+      "id": "lze955itijrwjxwn3t7egbgz",
+      "name": "Docker Hub Default",
+      "url": "https://hub.docker.com",
+      "kind": "dockerHub",
+      "secrets": []
+    },
+    {
+      "id": "oizkytzccpxzpj5opw8crelx",
+      "name": "Gitlab Default",
+      "url": "https://gitlab.com",
+      "kind": "gitlab",
+      "secrets": []
+    },
+    {
+      "id": "e376vncs02b8kvtr9wc72qlc",
+      "name": "NPM Default",
+      "url": "https://registry.npmjs.org",
+      "kind": "npm",
+      "secrets": []
+    },
+    {
+      "id": "s07wu4006xtlfb8el9kkqh7a",
+      "name": "Codeberg Default",
+      "url": "https://codeberg.org",
+      "kind": "codeberg",
+      "secrets": []
+    },
+    {
+      "id": "bnfmbs6r8logmhnxzkr296e4",
+      "name": "LinuxServer.io Default",
+      "url": "https://api.linuxserver.io",
+      "kind": "linuxServerIO",
+      "secrets": []
+    },
+    {
+      "id": "rjnkjlez24s7chqd8xe22upm",
+      "name": "GitHub Container Registry Default",
+      "url": "https://api.github.com",
+      "kind": "gitHubContainerRegistry",
+      "secrets": []
+    },
+    {
+      "id": "w2nld9glaki0hsvex8uxcdfn",
+      "name": "Quay Default",
+      "url": "https://quay.io",
+      "kind": "quay",
+      "secrets": []
+    },
+    {
+      "id": "avd0frupn72xwf4plopo176h",
+      "name": "Home Assistant",
+      "url": "https://deepdelver.duckdns.org:8123",
+      "kind": "homeAssistant",
+      "secrets": [
+        {
+          "kind": "apiKey",
+          "value": "<REDACTED_BWS>",
+          "updated_at": 1787789324
+        }
+      ]
+    },
+    {
+      "id": "prox01w3j5k7m9n1p3r5t7v9x1z",
+      "name": "Proxmox",
+      "url": "https://192.168.1.253:8006",
+      "kind": "proxmox",
+      "secrets": [
+        {
+          "kind": "username",
+          "value": "<REDACTED_BWS>",
+          "updated_at": 1787793300
+        },
+        {
+          "kind": "realm",
+          "value": "<REDACTED_BWS>",
+          "updated_at": 1787793300
+        },
+        {
+          "kind": "tokenId",
+          "value": "<REDACTED_BWS>",
+          "updated_at": 1787793200
+        },
+        {
+          "kind": "apiKey",
+          "value": "<REDACTED_BWS>",
+          "updated_at": 1787793200
+        }
+      ]
+    }
+  ]
+}
