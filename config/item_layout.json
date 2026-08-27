@@ -151,5 +151,32 @@
     "width": 3,
     "x_offset": 0,
     "y_offset": 4
+  },
+  {
+    "height": 1,
+    "item_id": "w_climate_living",
+    "layout_id": "vq1qbqhg2awp58jps4ys8ntf",
+    "section_id": "t1d5weem8dhylbhudesxiwq9",
+    "width": 1,
+    "x_offset": 0,
+    "y_offset": 5
+  },
+  {
+    "height": 1,
+    "item_id": "w_keuken_light",
+    "layout_id": "vq1qbqhg2awp58jps4ys8ntf",
+    "section_id": "t1d5weem8dhylbhudesxiwq9",
+    "width": 1,
+    "x_offset": 1,
+    "y_offset": 5
+  },
+  {
+    "height": 1,
+    "item_id": "w_plex_iframe",
+    "layout_id": "vq1qbqhg2awp58jps4ys8ntf",
+    "section_id": "t1d5weem8dhylbhudesxiwq9",
+    "width": 1,
+    "x_offset": 3,
+    "y_offset": 3
   }
 ]

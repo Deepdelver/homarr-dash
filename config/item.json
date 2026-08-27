@@ -40,13 +40,13 @@
     "advanced_options": {
       "borderColor": "",
       "customCssClasses": [],
-      "title": "Quick Links"
+      "title": "Bookmarks"
     },
     "board_id": "og15c9dzzqhkfppy2ne9mhoc",
     "id": "w_ll3nn0m1nd",
     "kind": "notebook",
     "options": {
-      "content": "# Quick Links\n- [Homarr](https://homarr.deeps-home.duckdns.org)\n- [Home Assistant](https://deepdelver.duckdns.org:8123)\n- [OpenClaw](https://openclaw.deeps-home.duckdns.org)\n- [9router](https://9router.deeps-home.duckdns.org)\n- [Buddy Hub](https://buddy.deeps-home.duckdns.org)\n- [Proxmox](https://deepdelver.duckdns.org:8006)"
+      "content": "# Bookmarks\n- [Buddy Hub](https://buddy.deeps-home.duckdns.org)\n- [Home Assistant](https://deepdelver.duckdns.org:8123)\n- [Plex](https://plex.deeps-home.duckdns.org)\n- [Proxmox](https://deepdelver.duckdns.org:8006)\n- [Grafana](https://grafana.deeps-home.duckdns.org)\n- [SearXNG](https://search.deeps-home.duckdns.org)"
     }
   },
   {
@@ -295,6 +295,59 @@
     "kind": "notebook",
     "options": {
       "content": "# Homarr master board\nBuilt via board.saveBoard (ops, 2026-08-27).\nIntegrations: Home Assistant (smart home), Proxmox (infra health).\nService monitors embed live health endpoints (v1.32.0 has no customApi widget)."
+    }
+  },
+  {
+    "advanced_options": {
+      "borderColor": "",
+      "customCssClasses": [],
+      "title": "Living Room Climate"
+    },
+    "board_id": "og15c9dzzqhkfppy2ne9mhoc",
+    "id": "w_climate_living",
+    "kind": "smartHome-entityState",
+    "options": {
+      "clickable": false,
+      "displayName": "Living room temp",
+      "entityId": "climate.living_room_anna",
+      "entityUnit": "°C"
+    }
+  },
+  {
+    "advanced_options": {
+      "borderColor": "",
+      "customCssClasses": [],
+      "title": "Kitchen Light"
+    },
+    "board_id": "og15c9dzzqhkfppy2ne9mhoc",
+    "id": "w_keuken_light",
+    "kind": "smartHome-entityState",
+    "options": {
+      "clickable": true,
+      "displayName": "Kitchen light",
+      "entityId": "light.keuken",
+      "entityUnit": ""
+    }
+  },
+  {
+    "advanced_options": {
+      "borderColor": "",
+      "customCssClasses": [],
+      "title": "Plex"
+    },
+    "board_id": "og15c9dzzqhkfppy2ne9mhoc",
+    "id": "w_plex_iframe",
+    "kind": "iframe",
+    "options": {
+      "allowAutoPlay": false,
+      "allowCamera": false,
+      "allowFullScreen": false,
+      "allowGeolocation": false,
+      "allowMicrophone": false,
+      "allowPayment": false,
+      "allowScrolling": true,
+      "allowTransparency": false,
+      "embedUrl": "https://plex.deeps-home.duckdns.org"
     }
   }
 ]

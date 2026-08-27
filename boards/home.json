@@ -1,8 +1,8 @@
 {
   "schemaVersion": "homarr-board-export-v1",
-  "generatedAt": "2026-08-27T01:38:43.255453+00:00",
+  "generatedAt": "2026-08-27T06:14:40.811580+00:00",
   "source": "live Homarr DB (k3s ns=homarr, PVC=homarr-database) /appdata/db/db.sqlite",
-  "notes": "Board content lives in the Homarr SQLite DB (PVC), not in git. This file is the source-of-truth snapshot. Re-apply via the Homarr management API (board.saveBoard) using .github/workflows/sync.yml. Secrets are never included here.",
+  "notes": "Board content lives in the Homarr SQLite DB (PVC), not in git. This file is the source-of-truth snapshot. Re-apply via the Homarr management API (board.saveBoard). Secrets are never included here.",
   "board": {
     "id": "og15c9dzzqhkfppy2ne9mhoc",
     "name": "Home",
@@ -103,12 +103,12 @@
       "kind": "notebook",
       "options": {
         "json": {
-          "content": "# Quick Links\n- [Homarr](https://homarr.deeps-home.duckdns.org)\n- [Home Assistant](https://deepdelver.duckdns.org:8123)\n- [OpenClaw](https://openclaw.deeps-home.duckdns.org)\n- [9router](https://9router.deeps-home.duckdns.org)\n- [Buddy Hub](https://buddy.deeps-home.duckdns.org)\n- [Proxmox](https://deepdelver.duckdns.org:8006)"
+          "content": "# Bookmarks\n- [Buddy Hub](https://buddy.deeps-home.duckdns.org)\n- [Home Assistant](https://deepdelver.duckdns.org:8123)\n- [Plex](https://plex.deeps-home.duckdns.org)\n- [Proxmox](https://deepdelver.duckdns.org:8006)\n- [Grafana](https://grafana.deeps-home.duckdns.org)\n- [SearXNG](https://search.deeps-home.duckdns.org)"
         }
       },
       "advancedOptions": {
         "json": {
-          "title": "Quick Links",
+          "title": "Bookmarks",
           "customCssClasses": [],
           "borderColor": ""
         }
@@ -505,6 +505,89 @@
         "x": 0,
         "y": 4,
         "width": 3,
+        "height": 1
+      },
+      "integrationId": null
+    },
+    {
+      "id": "w_climate_living",
+      "kind": "smartHome-entityState",
+      "options": {
+        "json": {
+          "entityId": "climate.living_room_anna",
+          "displayName": "Living room temp",
+          "entityUnit": "\u00b0C",
+          "clickable": false
+        }
+      },
+      "advancedOptions": {
+        "json": {
+          "title": "Living Room Climate",
+          "customCssClasses": [],
+          "borderColor": ""
+        }
+      },
+      "layout": {
+        "x": 0,
+        "y": 5,
+        "width": 1,
+        "height": 1
+      },
+      "integrationId": "avd0frupn72xwf4plopo176h"
+    },
+    {
+      "id": "w_keuken_light",
+      "kind": "smartHome-entityState",
+      "options": {
+        "json": {
+          "entityId": "light.keuken",
+          "displayName": "Kitchen light",
+          "entityUnit": "",
+          "clickable": true
+        }
+      },
+      "advancedOptions": {
+        "json": {
+          "title": "Kitchen Light",
+          "customCssClasses": [],
+          "borderColor": ""
+        }
+      },
+      "layout": {
+        "x": 1,
+        "y": 5,
+        "width": 1,
+        "height": 1
+      },
+      "integrationId": "avd0frupn72xwf4plopo176h"
+    },
+    {
+      "id": "w_plex_iframe",
+      "kind": "iframe",
+      "options": {
+        "json": {
+          "embedUrl": "https://plex.deeps-home.duckdns.org",
+          "allowFullScreen": false,
+          "allowScrolling": true,
+          "allowTransparency": false,
+          "allowPayment": false,
+          "allowAutoPlay": false,
+          "allowMicrophone": false,
+          "allowCamera": false,
+          "allowGeolocation": false
+        }
+      },
+      "advancedOptions": {
+        "json": {
+          "title": "Plex",
+          "customCssClasses": [],
+          "borderColor": ""
+        }
+      },
+      "layout": {
+        "x": 3,
+        "y": 3,
+        "width": 1,
         "height": 1
       },
       "integrationId": null
