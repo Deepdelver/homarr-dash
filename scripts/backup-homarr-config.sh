@@ -10,6 +10,10 @@
 # Requires: kubectl (kubeconfig with homarr namespace access), sqlite3, git.
 set -euo pipefail
 
+# Pin runtime deps so this runs unattended under cron (no inherited env/agent).
+export KUBECONFIG="${KUBECONFIG:-/home/frank/.kube/config}"
+export GIT_SSH_COMMAND="ssh -i /home/frank/.ssh/homarr-dash-deploy -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new"
+
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 NAMESPACE="homarr"
 POD="$(kubectl -n "$NAMESPACE" get pods -l app=homarr -o jsonpath='{.items[0].metadata.name}' 2>/dev/null || true)"
