@@ -1,0 +1,222 @@
+/*
+ * Buddy Hub inspired Homarr theme
+ * ----------------------------------------------------------------------------
+ * Goal: make the deeps-home Homarr dashboard match the clean aesthetic of
+ *       https://buddy.deeps-home.duckdns.org
+ *   - Light, airy background (#f5f5f7) like Buddy Hub
+ *   - Rounded cards (12-16px) with subtle shadows
+ *   - Generous spacing between widgets
+ *   - Clean Inter typography
+ *   - Calm blue accent (#3b82f6) instead of Homarr's default red
+ *   - Responsive mobile grid (no more "disgusting" phone view)
+ *   - Gentle hover lift on every widget
+ *
+ * Applied via Homarr Settings -> Appearance -> Custom CSS, or (preferred, for
+ * GitOps) by the apply script in .github/workflows which pushes this exact
+ * string into board.custom_css through board.saveBoard.
+ *
+ * Homarr v1.32 is Mantine-based; widgets render as .mantine-Paper-root inside a
+ * CSS grid. Selectors below are defensive (attribute/class contains + base
+ * Mantine classes) so the theme survives minor Homarr point releases.
+ */
+
+:root {
+  /* Buddy Hub palette */
+  --bh-bg: #f5f5f7;
+  --bh-card: #ffffff;
+  --bh-card-soft: #fafafa;
+  --bh-border: rgba(17, 24, 39, 0.06);
+  --bh-shadow: 0 1px 3px rgba(17, 24, 39, 0.08), 0 1px 2px rgba(17, 24, 39, 0.04);
+  --bh-shadow-hover: 0 6px 16px rgba(17, 24, 39, 0.12), 0 2px 4px rgba(17, 24, 39, 0.06);
+  --bh-text: #1f2937;
+  --bh-text-muted: #6b7280;
+  --bh-accent: #3b82f6;
+  --bh-accent-soft: #eff6ff;
+  --bh-radius: 14px;
+
+  /* Re-tint Homarr's Mantine accent tokens to Buddy Hub blue */
+  --mantine-primary-color-filled: var(--bh-accent);
+  --mantine-primary-color-filled-hover: #2f74e0;
+  --mantine-primary-color-light: var(--bh-accent-soft);
+  --mantine-primary-color-light-color: var(--bh-accent);
+  --mantine-color-bundle-default: #3b82f6;
+}
+
+/* ---- Global canvas ---- */
+html,
+body,
+#root,
+[data-mantine-color-scheme],
+.mantine-AppShell-root,
+.mantine-AppShell-main {
+  background-color: var(--bh-bg) !important;
+  color: var(--bh-text);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---- Top app bar: lighten + tighten ---- */
+.mantine-AppShell-header,
+[data-position="top"] {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: saturate(180%) blur(8px);
+  border-bottom: 1px solid var(--bh-border) !important;
+}
+
+/* ---- Widget cards ---- */
+.mantine-Paper-root,
+[class*="WidgetWrapper"],
+[class*="widget"] {
+  background-color: var(--bh-card) !important;
+  border: 1px solid var(--bh-border) !important;
+  border-radius: var(--bh-radius) !important;
+  box-shadow: var(--bh-shadow) !important;
+  transition: box-shadow 160ms ease, transform 160ms ease, border-color 160ms ease;
+  overflow: hidden;
+}
+
+/* Hover lift (skip while dragging/editing) */
+.mantine-Paper-root:hover,
+[class*="WidgetWrapper"]:hover {
+  box-shadow: var(--bh-shadow-hover) !important;
+  transform: translateY(-2px);
+  border-color: rgba(59, 130, 246, 0.25) !important;
+}
+
+/* Soften inner dividers / borders inside widgets for a cleaner look */
+[class*="WidgetWrapper"] [class*="Divider"],
+.mantine-Divider-root {
+  border-color: var(--bh-border) !important;
+}
+
+/* ---- Headings & labels inside widgets ---- */
+[class*="WidgetWrapper"] h1,
+[class*="WidgetWrapper"] h2,
+[class*="WidgetWrapper"] h3,
+[class*="WidgetWrapper"] [class*="Title"],
+[class*="WidgetWrapper"] [class*="title"] {
+  color: var(--bh-text) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em;
+}
+
+[class*="WidgetWrapper"] [class*="Text"],
+[class*="WidgetWrapper"] [class*="text"],
+[class*="WidgetWrapper"] span {
+  color: var(--bh-text) !important;
+}
+
+[class*="WidgetWrapper"] [class*="TextMuted"],
+[class*="WidgetWrapper"] [class*="muted"] {
+  color: var(--bh-text-muted) !important;
+}
+
+/* ---- Board grid spacing (more breathing room) ---- */
+.mantine-Grid-root,
+[class*="masonry"] > *,
+[class*="Grid"] {
+  gap: 16px !important;
+}
+
+/* Per-cell spacing fallback for older grid layouts */
+.mantine-Grid-col {
+  padding: 8px !important;
+}
+
+/* ---- Cleaner buttons & inputs ---- */
+.mantine-Button-root {
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+}
+
+.mantine-TextInput-input,
+.mantine-Select-input,
+.mantine-Input-input {
+  border-radius: 10px !important;
+}
+
+/* ---- Links & accents ---- */
+a,
+[class*="Anchor"] {
+  color: var(--bh-accent) !important;
+}
+
+/* Status dots / indicators read better with the calm accent */
+[class*="indicator"],
+[class*="status"] {
+  color: var(--bh-accent) !important;
+}
+
+/* =====================================================================
+ * DARK MODE — keep the same clean language, just darker surfaces
+ * ===================================================================== */
+[data-mantine-color-scheme="dark"],
+[data-mantine-color-scheme="dark"] .mantine-AppShell-main {
+  --bh-bg: #16181d;
+  --bh-card: #1e2128;
+  --bh-card-soft: #20242c;
+  --bh-border: rgba(255, 255, 255, 0.07);
+  --bh-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --bh-shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.5);
+  --bh-text: #e5e7eb;
+  --bh-text-muted: #9ca3af;
+  --bh-accent-soft: rgba(59, 130, 246, 0.15);
+}
+
+[data-mantine-color-scheme="dark"] .mantine-AppShell-header {
+  background-color: rgba(22, 24, 29, 0.85) !important;
+}
+
+/* =====================================================================
+ * MOBILE  (phone viewport — previously "disgusting")
+ * Stack widgets to a comfortable 1-2 column rhythm with sane gaps.
+ * ===================================================================== */
+@media (max-width: 768px) {
+  :root {
+    --bh-radius: 12px;
+  }
+
+  .mantine-AppShell-main {
+    padding: 12px !important;
+  }
+
+  /* Homarr collapses the grid on small screens; ensure full-width tiles
+     with consistent vertical rhythm and no clipping. */
+  .mantine-Grid-col,
+  [class*="Grid-col"] {
+    flex-basis: 100% !important;
+    max-width: 100% !important;
+    padding: 6px !important;
+  }
+
+  .mantine-Grid-root,
+  [class*="masonry"] > * {
+    gap: 12px !important;
+  }
+
+  .mantine-Paper-root,
+  [class*="WidgetWrapper"] {
+    border-radius: 12px !important;
+  }
+
+  /* Don't lift on touch — avoids janky scroll */
+  .mantine-Paper-root:hover,
+  [class*="WidgetWrapper"]:hover {
+    transform: none;
+  }
+
+  /* Shrink the header so content gets the screen */
+  .mantine-AppShell-header {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .mantine-Grid-col,
+  [class*="Grid-col"] {
+    flex-basis: 50% !important;
+    max-width: 50% !important;
+  }
+}
