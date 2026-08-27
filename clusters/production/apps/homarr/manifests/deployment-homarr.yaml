@@ -45,6 +45,11 @@ spec:
         volumeMounts:
         - name: data
           mountPath: /appdata
+        # Docker socket (hostPath) so Homarr's Docker integration can read the
+        # host Docker daemon (docker-stack). Homarr runs as root in the pod, so
+        # it can open the socket. No TCP exposure — only the local unix socket.
+        - name: docker-sock
+          mountPath: /var/run/docker.sock
         livenessProbe:
           httpGet:
             path: /
@@ -74,3 +79,7 @@ spec:
       - name: data
         persistentVolumeClaim:
           claimName: homarr-database
+      - name: docker-sock
+        hostPath:
+          path: /var/run/docker.sock
+          type: Socket
