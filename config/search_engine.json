@@ -1,0 +1,32 @@
+[
+  {
+    "description": "Search the web with Google",
+    "icon_url": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/google.svg",
+    "id": "eukr1cyb1xq33gokzrrv5v2k",
+    "integration_id": null,
+    "name": "Google",
+    "short": "g",
+    "type": "generic",
+    "url_template": "https://www.google.com/search?q=%s"
+  },
+  {
+    "description": "Search for videos on YouTube",
+    "icon_url": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/youtube.svg",
+    "id": "g2ntiu985f9p8jrocaiqm9yd",
+    "integration_id": null,
+    "name": "YouTube",
+    "short": "yt",
+    "type": "generic",
+    "url_template": "https://www.youtube.com/results?search_query=%s"
+  },
+  {
+    "description": "Search the Homarr documentation",
+    "icon_url": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/homarr.svg",
+    "id": "aqam9p9jr789mu719qhcr75w",
+    "integration_id": null,
+    "name": "Homarr Docs",
+    "short": "docs",
+    "type": "generic",
+    "url_template": "https://homarr.dev/search?q=%25s"
+  }
+]

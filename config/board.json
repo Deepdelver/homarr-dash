@@ -1,0 +1,23 @@
+[
+  {
+    "background_image_attachment": "fixed",
+    "background_image_repeat": "no-repeat",
+    "background_image_size": "cover",
+    "background_image_url": null,
+    "creator_id": "sa9qmeoxj2kp4caeo07h6y4n",
+    "custom_css": null,
+    "disable_status": 0,
+    "favicon_image_url": null,
+    "icon_color": null,
+    "id": "og15c9dzzqhkfppy2ne9mhoc",
+    "is_public": 0,
+    "item_radius": "lg",
+    "logo_image_url": null,
+    "meta_title": null,
+    "name": "Home",
+    "opacity": 100,
+    "page_title": null,
+    "primary_color": "#fa5252",
+    "secondary_color": "#fd7e14"
+  }
+]

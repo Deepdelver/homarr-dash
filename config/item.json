@@ -1,0 +1,300 @@
+[
+  {
+    "advanced_options": {
+      "borderColor": "",
+      "customCssClasses": [],
+      "title": "Clock"
+    },
+    "board_id": "og15c9dzzqhkfppy2ne9mhoc",
+    "id": "w_qxd455gvjar",
+    "kind": "clock",
+    "options": {}
+  },
+  {
+    "advanced_options": {
+      "borderColor": "",
+      "customCssClasses": [],
+      "title": "Weather"
+    },
+    "board_id": "og15c9dzzqhkfppy2ne9mhoc",
+    "id": "w_cpvejexq8xl",
+    "kind": "weather",
+    "options": {
+      "dateFormat": "dddd, MMMM D",
+      "disableTemperatureDecimals": false,
+      "forecastDayCount": 3,
+      "hasForecast": true,
+      "isFormatFahrenheit": false,
+      "location": {
+        "country": "NL",
+        "latitude": 52.0907,
+        "longitude": 5.1214,
+        "name": "Utrecht",
+        "timezone": "Europe/Amsterdam"
+      },
+      "showCity": true,
+      "showCurrentWindSpeed": false
+    }
+  },
+  {
+    "advanced_options": {
+      "borderColor": "",
+      "customCssClasses": [],
+      "title": "Quick Links"
+    },
+    "board_id": "og15c9dzzqhkfppy2ne9mhoc",
+    "id": "w_ll3nn0m1nd",
+    "kind": "notebook",
+    "options": {
+      "content": "# Quick Links\n- [Homarr](https://homarr.deeps-home.duckdns.org)\n- [Home Assistant](https://deepdelver.duckdns.org:8123)\n- [OpenClaw](https://openclaw.deeps-home.duckdns.org)\n- [9router](https://9router.deeps-home.duckdns.org)\n- [Buddy Hub](https://buddy.deeps-home.duckdns.org)\n- [Proxmox](https://deepdelver.duckdns.org:8006)"
+    }
+  },
+  {
+    "advanced_options": {
+      "borderColor": "",
+      "customCssClasses": [],
+      "title": "TV Light"
+    },
+    "board_id": "og15c9dzzqhkfppy2ne9mhoc",
+    "id": "w_0mxmih1sboei",
+    "kind": "smartHome-entityState",
+    "options": {
+      "clickable": true,
+      "displayName": "TV light",
+      "entityId": "light.light_tv",
+      "entityUnit": ""
+    }
+  },
+  {
+    "advanced_options": {
+      "borderColor": "",
+      "customCssClasses": [],
+      "title": "Kitchen Temp"
+    },
+    "board_id": "og15c9dzzqhkfppy2ne9mhoc",
+    "id": "w_t099gyzfko",
+    "kind": "smartHome-entityState",
+    "options": {
+      "clickable": false,
+      "displayName": "Kitchen temp",
+      "entityId": "sensor.air_keuken_temperature",
+      "entityUnit": "°C"
+    }
+  },
+  {
+    "advanced_options": {
+      "borderColor": "",
+      "customCssClasses": [],
+      "title": "HA Automation"
+    },
+    "board_id": "og15c9dzzqhkfppy2ne9mhoc",
+    "id": "w_8jkxm24c9kn",
+    "kind": "smartHome-executeAutomation",
+    "options": {
+      "displayName": "Dim lights (sun)",
+      "entityId": "automation.dim_lights_based_on_sun_elevation"
+    }
+  },
+  {
+    "advanced_options": {
+      "borderColor": "",
+      "customCssClasses": [],
+      "title": "Hall Light"
+    },
+    "board_id": "og15c9dzzqhkfppy2ne9mhoc",
+    "id": "w_ol84jmefsx",
+    "kind": "smartHome-entityState",
+    "options": {
+      "clickable": true,
+      "displayName": "Hall light",
+      "entityId": "light.light_gang",
+      "entityUnit": ""
+    }
+  },
+  {
+    "advanced_options": {
+      "borderColor": "",
+      "customCssClasses": [],
+      "title": "Proxmox Cluster"
+    },
+    "board_id": "og15c9dzzqhkfppy2ne9mhoc",
+    "id": "w_039s36u1yplb",
+    "kind": "healthMonitoring",
+    "options": {
+      "cpu": true,
+      "defaultTab": "cluster",
+      "fahrenheit": false,
+      "fileSystem": true,
+      "memory": true,
+      "sectionIndicatorRequirement": "all",
+      "showUptime": true,
+      "visibleClusterSections": [
+        "cpu",
+        "memory",
+        "uptime",
+        "fileSystem"
+      ]
+    }
+  },
+  {
+    "advanced_options": {
+      "borderColor": "",
+      "customCssClasses": [],
+      "title": "OpenClaw"
+    },
+    "board_id": "og15c9dzzqhkfppy2ne9mhoc",
+    "id": "w_efmrsmn0k1g",
+    "kind": "iframe",
+    "options": {
+      "allowAutoPlay": false,
+      "allowCamera": false,
+      "allowFullScreen": false,
+      "allowGeolocation": false,
+      "allowMicrophone": false,
+      "allowPayment": false,
+      "allowScrolling": true,
+      "allowTransparency": false,
+      "embedUrl": "https://openclaw.deeps-home.duckdns.org/health"
+    }
+  },
+  {
+    "advanced_options": {
+      "borderColor": "",
+      "customCssClasses": [],
+      "title": "9router"
+    },
+    "board_id": "og15c9dzzqhkfppy2ne9mhoc",
+    "id": "w_1ylkfi5mqll",
+    "kind": "iframe",
+    "options": {
+      "allowAutoPlay": false,
+      "allowCamera": false,
+      "allowFullScreen": false,
+      "allowGeolocation": false,
+      "allowMicrophone": false,
+      "allowPayment": false,
+      "allowScrolling": true,
+      "allowTransparency": false,
+      "embedUrl": "https://9router.deeps-home.duckdns.org/api/health"
+    }
+  },
+  {
+    "advanced_options": {
+      "borderColor": "",
+      "customCssClasses": [],
+      "title": "Hermes"
+    },
+    "board_id": "og15c9dzzqhkfppy2ne9mhoc",
+    "id": "w_d05bhleg4d",
+    "kind": "iframe",
+    "options": {
+      "allowAutoPlay": false,
+      "allowCamera": false,
+      "allowFullScreen": false,
+      "allowGeolocation": false,
+      "allowMicrophone": false,
+      "allowPayment": false,
+      "allowScrolling": true,
+      "allowTransparency": false,
+      "embedUrl": "https://manager.deeps-home.duckdns.org/api/ataglance"
+    }
+  },
+  {
+    "advanced_options": {
+      "borderColor": "",
+      "customCssClasses": [],
+      "title": "Qdrant"
+    },
+    "board_id": "og15c9dzzqhkfppy2ne9mhoc",
+    "id": "w_nxbrf2ktu2r",
+    "kind": "iframe",
+    "options": {
+      "allowAutoPlay": false,
+      "allowCamera": false,
+      "allowFullScreen": false,
+      "allowGeolocation": false,
+      "allowMicrophone": false,
+      "allowPayment": false,
+      "allowScrolling": true,
+      "allowTransparency": false,
+      "embedUrl": "https://qdrant.deeps-home.duckdns.org/dashboard"
+    }
+  },
+  {
+    "advanced_options": {
+      "borderColor": "",
+      "customCssClasses": [],
+      "title": "Buddy Hub"
+    },
+    "board_id": "og15c9dzzqhkfppy2ne9mhoc",
+    "id": "w_bkt74uzi23r",
+    "kind": "iframe",
+    "options": {
+      "allowAutoPlay": false,
+      "allowCamera": false,
+      "allowFullScreen": false,
+      "allowGeolocation": false,
+      "allowMicrophone": false,
+      "allowPayment": false,
+      "allowScrolling": true,
+      "allowTransparency": false,
+      "embedUrl": "https://buddy.deeps-home.duckdns.org/api/health"
+    }
+  },
+  {
+    "advanced_options": {
+      "borderColor": "",
+      "customCssClasses": [],
+      "title": "Cluster Metrics"
+    },
+    "board_id": "og15c9dzzqhkfppy2ne9mhoc",
+    "id": "w_owkso56q7k",
+    "kind": "iframe",
+    "options": {
+      "allowAutoPlay": false,
+      "allowCamera": false,
+      "allowFullScreen": false,
+      "allowGeolocation": false,
+      "allowMicrophone": false,
+      "allowPayment": false,
+      "allowScrolling": true,
+      "allowTransparency": false,
+      "embedUrl": "https://manager.deeps-home.duckdns.org/api/ataglance"
+    }
+  },
+  {
+    "advanced_options": {
+      "borderColor": "",
+      "customCssClasses": [],
+      "title": "Release feed"
+    },
+    "board_id": "og15c9dzzqhkfppy2ne9mhoc",
+    "id": "w_hvu7k9h0hm9",
+    "kind": "releases",
+    "options": {}
+  },
+  {
+    "advanced_options": {
+      "borderColor": "",
+      "customCssClasses": [],
+      "title": "Calendar"
+    },
+    "board_id": "og15c9dzzqhkfppy2ne9mhoc",
+    "id": "w_ndt1pgq702j",
+    "kind": "calendar",
+    "options": {}
+  },
+  {
+    "advanced_options": {
+      "borderColor": "",
+      "customCssClasses": [],
+      "title": "Notes"
+    },
+    "board_id": "og15c9dzzqhkfppy2ne9mhoc",
+    "id": "w_74iurr65i4n",
+    "kind": "notebook",
+    "options": {
+      "content": "# Homarr master board\nBuilt via board.saveBoard (ops, 2026-08-27).\nIntegrations: Home Assistant (smart home), Proxmox (infra health).\nService monitors embed live health endpoints (v1.32.0 has no customApi widget)."
+    }
+  }
+]

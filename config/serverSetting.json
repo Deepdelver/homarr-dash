@@ -1,0 +1,47 @@
+[
+  {
+    "setting_key": "analytics",
+    "value": {
+      "enableGeneral": true,
+      "enableIntegrationData": false,
+      "enableUserData": false,
+      "enableWidgetData": false
+    }
+  },
+  {
+    "setting_key": "crawlingAndIndexing",
+    "value": {
+      "noFollow": true,
+      "noIndex": true,
+      "noSiteLinksSearchBox": false,
+      "noTranslate": true
+    }
+  },
+  {
+    "setting_key": "board",
+    "value": {
+      "enableStatusByDefault": true,
+      "forceDisableStatus": false,
+      "homeBoardId": "og15c9dzzqhkfppy2ne9mhoc",
+      "mobileHomeBoardId": null
+    }
+  },
+  {
+    "setting_key": "appearance",
+    "value": {
+      "defaultColorScheme": "light"
+    }
+  },
+  {
+    "setting_key": "culture",
+    "value": {
+      "defaultLocale": "en"
+    }
+  },
+  {
+    "setting_key": "search",
+    "value": {
+      "defaultSearchEngineId": "aqam9p9jr789mu719qhcr75w"
+    }
+  }
+]

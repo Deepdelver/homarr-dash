@@ -1,0 +1,20 @@
+{
+  "generated_by": "scripts/export-homarr-config.py",
+  "note": "integrationSecret values are [REDACTED]; re-enter in UI after restore.",
+  "redacted_secret_entries": 5,
+  "tables_exported": {
+    "board": 1,
+    "group": 2,
+    "groupMember": 2,
+    "groupPermission": 1,
+    "integration": 10,
+    "integration_item": 5,
+    "item": 17,
+    "item_layout": 17,
+    "layout": 1,
+    "onboarding": 1,
+    "search_engine": 3,
+    "section": 1,
+    "serverSetting": 6
+  }
+}

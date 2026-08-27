@@ -1,0 +1,62 @@
+[
+  {
+    "id": "mwy4ihizrd3r6i86rq2uqda2",
+    "kind": "github",
+    "name": "Github Default",
+    "url": "https://api.github.com"
+  },
+  {
+    "id": "lze955itijrwjxwn3t7egbgz",
+    "kind": "dockerHub",
+    "name": "Docker Hub Default",
+    "url": "https://hub.docker.com"
+  },
+  {
+    "id": "oizkytzccpxzpj5opw8crelx",
+    "kind": "gitlab",
+    "name": "Gitlab Default",
+    "url": "https://gitlab.com"
+  },
+  {
+    "id": "e376vncs02b8kvtr9wc72qlc",
+    "kind": "npm",
+    "name": "NPM Default",
+    "url": "https://registry.npmjs.org"
+  },
+  {
+    "id": "s07wu4006xtlfb8el9kkqh7a",
+    "kind": "codeberg",
+    "name": "Codeberg Default",
+    "url": "https://codeberg.org"
+  },
+  {
+    "id": "bnfmbs6r8logmhnxzkr296e4",
+    "kind": "linuxServerIO",
+    "name": "LinuxServer.io Default",
+    "url": "https://api.linuxserver.io"
+  },
+  {
+    "id": "rjnkjlez24s7chqd8xe22upm",
+    "kind": "gitHubContainerRegistry",
+    "name": "GitHub Container Registry Default",
+    "url": "https://api.github.com"
+  },
+  {
+    "id": "w2nld9glaki0hsvex8uxcdfn",
+    "kind": "quay",
+    "name": "Quay Default",
+    "url": "https://quay.io"
+  },
+  {
+    "id": "avd0frupn72xwf4plopo176h",
+    "kind": "homeAssistant",
+    "name": "Home Assistant",
+    "url": "https://deepdelver.duckdns.org:8123"
+  },
+  {
+    "id": "prox01w3j5k7m9n1p3r5t7v9x1z",
+    "kind": "proxmox",
+    "name": "Proxmox",
+    "url": "https://192.168.1.253:8006"
+  }
+]
