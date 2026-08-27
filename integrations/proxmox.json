@@ -1,6 +1,6 @@
 {
   "schemaVersion": "homarr-integration-v1",
-  "generatedAt": "2026-08-27T01:38:43.255453+00:00",
+  "generatedAt": "2026-08-27T06:14:40.811580+00:00",
   "id": "prox01w3j5k7m9n1p3r5t7v9x1z",
   "name": "Proxmox",
   "kind": "proxmox",
@@ -27,6 +27,6 @@
       "updated_at": 1787793200
     }
   ],
-  "secretSource": "BWS project 'Ai' (fb098e5c-...); injected into k8s secret 'homarr' at deploy time",
-  "note": "Secret VALUES are redacted. Re-create via BWS + kubectl create secret. Do NOT commit real values."
+  "secretSource": "BWS project 'Ai'; injected into k8s secret 'homarr'",
+  "note": "Secret VALUES redacted. Do NOT commit real values."
 }

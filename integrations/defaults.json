@@ -1,7 +1,7 @@
 {
   "schemaVersion": "homarr-integration-defaults-v1",
-  "generatedAt": "2026-08-27T01:38:43.255453+00:00",
-  "note": "Built-in Homarr registry integrations (no credentials configured). Documented for completeness.",
+  "generatedAt": "2026-08-27T06:14:40.811580+00:00",
+  "note": "Built-in registry integrations (no credentials).",
   "integrations": [
     {
       "id": "mwy4ihizrd3r6i86rq2uqda2",
