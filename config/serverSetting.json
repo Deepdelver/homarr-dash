@@ -29,6 +29,7 @@
   {
     "setting_key": "appearance",
     "value": {
+      "customCSS": "/* Buddy Hub Design Tokens for Homarr */\n:root {\n  --accent: #3b82f6;\n  --accent-2: #8b5cf6;\n  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;\n  --radius-sm: 8px;\n  --radius: 12px;\n  --space-3: 12px;\n  --space-4: 16px;\n  --space-5: 24px;\n  --bg: #f5f5f7;\n  --bg-soft: #f0f0f3;\n  --bg-card: #ffffff;\n  --border: #e2e2e8;\n  --text: #1f2937;\n  --text-dim: #6b7280;\n  --shadow: 0 1px 3px rgba(0,0,0,0.08);\n  --shadow-hover: 0 0 24px rgba(59,130,246,0.18);\n}\n\n.grid-stack-item {\n  border-radius: 12px !important;\n  box-shadow: 0 4px 12px rgba(0,0,0,0.08) !important;\n  margin: 8px !important;\n  transition: box-shadow 0.18s ease, transform 0.18s ease;\n}\n\n.grid-stack-item:hover {\n  box-shadow: 0 0 24px rgba(59,130,246,0.18) !important;\n}\n\n.grid-stack-item .widget-content {\n  background: #ffffff !important;\n  border-radius: 8px !important;\n  padding: 16px !important;\n}\n\n.widget-header {\n  background: rgba(59,130,246,0.1) !important;\n  border-bottom: 1px solid #e2e2e8 !important;\n}\n\n* {\n  scrollbar-width: thin;\n  scrollbar-color: #d8d8e0 transparent;\n}\n*::-webkit-scrollbar { width: 9px; height: 9px; }\n*::-webkit-scrollbar-thumb {\n  background: #d8d8e0;\n  border-radius: 6px;\n}\n",
       "defaultColorScheme": "light"
     }
   },
